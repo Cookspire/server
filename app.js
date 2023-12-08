@@ -7,6 +7,9 @@ var path = require("path");
 let cookie_parser = require("cookie-parser");
 var fetch = require("node-fetch");
 const jwt = require("jsonwebtoken");
+const multer = require("multer");
+const upload = multer({ dest: "uploads/" });
+
 
 require("dotenv").config();
 
@@ -76,7 +79,124 @@ var checkAuthorizationToken = function (req, res, next) {
 var PROXY_URL = "localhost:8091";
 
 app.use(
+  "/api/filter/recipe",
+  proxy(PROXY_URL, {
+    proxyReqPathResolver: function (req, res) {
+      var parts = req.url.split("?");
+      var QUERY_STRING = parts[1];
+      var PATH = req.baseUrl.replace("/api", "");
+      var UPDATED_PATH = PATH + (QUERY_STRING ? "?" + QUERY_STRING : "");
+      return UPDATED_PATH;
+    },
+  })
+);
+
+app.use(
+  "/api/filter/recipe",
+  proxy(PROXY_URL, {
+    proxyReqPathResolver: function (req, res) {
+      var parts = req.url.split("?");
+      var QUERY_STRING = parts[1];
+      var PATH = req.baseUrl.replace("/api", "");
+      var UPDATED_PATH = PATH + (QUERY_STRING ? "?" + QUERY_STRING : "");
+      return UPDATED_PATH;
+    },
+  })
+);
+
+app.use(
+  "/api/fetch/complete/recipe",
+  proxy(PROXY_URL, {
+    proxyReqPathResolver: function (req, res) {
+      var parts = req.url.split("?");
+      var QUERY_STRING = parts[1];
+      var PATH = req.baseUrl.replace("/api", "");
+      var UPDATED_PATH = PATH + (QUERY_STRING ? "?" + QUERY_STRING : "");
+      return UPDATED_PATH;
+    },
+  })
+);
+
+app.use(
+  "/api/search/cookspire",
+  proxy(PROXY_URL, {
+    proxyReqPathResolver: function (req, res) {
+      var parts = req.url.split("?");
+      var QUERY_STRING = parts[1];
+      var PATH = req.baseUrl.replace("/api", "");
+      var UPDATED_PATH = PATH + (QUERY_STRING ? "?" + QUERY_STRING : "");
+      return UPDATED_PATH;
+    },
+  })
+);
+
+app.use(
   "/api/persist/user",
+  proxy(PROXY_URL, {
+    proxyReqPathResolver: function (req, res) {
+      var parts = req.url.split("?");
+      var QUERY_STRING = parts[1];
+      var PATH = req.baseUrl.replace("/api", "");
+      var UPDATED_PATH = PATH + (QUERY_STRING ? "?" + QUERY_STRING : "");
+      return UPDATED_PATH;
+    },
+  })
+);
+
+app.use(
+  "/api/fetch/recipe/cuisine",
+  proxy(PROXY_URL, {
+    proxyReqPathResolver: function (req, res) {
+      var parts = req.url.split("?");
+      var QUERY_STRING = parts[1];
+      var PATH = req.baseUrl.replace("/api", "");
+      var UPDATED_PATH = PATH + (QUERY_STRING ? "?" + QUERY_STRING : "");
+      return UPDATED_PATH;
+    },
+  })
+);
+
+app.use(
+  "/api/fetchAll/trending/post/",
+  proxy(PROXY_URL, {
+    proxyReqPathResolver: function (req, res) {
+      var parts = req.url.split("?");
+      var QUERY_STRING = parts[1];
+      var PATH = req.baseUrl.replace("/api", "");
+      var UPDATED_PATH = PATH + (QUERY_STRING ? "?" + QUERY_STRING : "");
+      return UPDATED_PATH;
+    },
+  })
+);
+
+app.use(
+  "/api/search/recipe",
+  proxy(PROXY_URL, {
+    proxyReqPathResolver: function (req, res) {
+      var parts = req.url.split("?");
+      var QUERY_STRING = parts[1];
+      var PATH = req.baseUrl.replace("/api", "");
+      var UPDATED_PATH = PATH + (QUERY_STRING ? "?" + QUERY_STRING : "");
+      return UPDATED_PATH;
+    },
+  })
+);
+
+app.use(
+  "/api/search/cookspire",
+  proxy(PROXY_URL, {
+    proxyReqPathResolver: function (req, res) {
+      var parts = req.url.split("?");
+      var QUERY_STRING = parts[1];
+      var PATH = req.baseUrl.replace("/api", "");
+      var UPDATED_PATH = PATH + (QUERY_STRING ? "?" + QUERY_STRING : "");
+      return UPDATED_PATH;
+    },
+  })
+);
+
+app.use(
+  "/api/fetch/trending/profile",
   proxy(PROXY_URL, {
     proxyReqPathResolver: function (req, res) {
       var parts = req.url.split("?");
